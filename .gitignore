@@ -1,0 +1,9 @@
+.ipynb_checkpoints/
+VOC/
+__pycache__/
+*.pth
+*.jpg
+model/utils/nms/_nms_gpu_post.c
+model/utils/nms/_nms_gpu_post.cpython-36m-x86_64-linux-gnu.so
+model/utils/nms/build/
+nohup.out
