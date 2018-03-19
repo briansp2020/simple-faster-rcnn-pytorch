@@ -7,9 +7,10 @@ from pprint import pprint
 
 class Config:
     # data
-    voc_data_dir = '/home/cy/.chainer/dataset/pfnet/chainercv/voc/VOCdevkit/VOC2007/'
-    min_size = 600  # image resize
-    max_size = 1000 # image resize
+    nuclei_data_dir = '/root/input'
+
+    min_size = 512  # image resize
+    max_size = 512 # image resize
     num_workers = 8
     test_num_workers = 8
 
@@ -25,9 +26,9 @@ class Config:
 
 
     # visualization
-    env = 'faster-rcnn'  # visdom env
+    env = 'nuclei-rcnn'  # visdom env
     port = 8097
-    plot_every = 40  # vis every N iter
+    plot_every = 100  # vis every N iter
 
     # preset
     data = 'voc'
@@ -43,7 +44,7 @@ class Config:
     # debug
     debug_file = '/tmp/debugf'
 
-    test_num = 10000
+    test_num = 1000
     # model
     load_path = None
 

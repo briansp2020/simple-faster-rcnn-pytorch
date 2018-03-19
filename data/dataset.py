@@ -1,5 +1,5 @@
 import torch as t
-from .voc_dataset import VOCBboxDataset
+from .nuclei_dataset import NucleiDataset
 from skimage import transform as sktsf
 from torchvision import transforms as tvtsf
 from . import util
@@ -96,9 +96,9 @@ class Transform(object):
 
 
 class Dataset:
-    def __init__(self, opt):
+    def __init__(self, opt, data_csv):
         self.opt = opt
-        self.db = VOCBboxDataset(opt.voc_data_dir)
+        self.db = NucleiDataset(opt.nuclei_data_dir, data_csv)
         self.tsf = Transform(opt.min_size, opt.max_size)
 
     def __getitem__(self, idx):
@@ -114,13 +114,13 @@ class Dataset:
 
 
 class TestDataset:
-    def __init__(self, opt, split='test', use_difficult=True):
+    def __init__(self, opt, data_csv, use_difficult=True):
         self.opt = opt
-        self.db = VOCBboxDataset(opt.voc_data_dir, split=split, use_difficult=use_difficult)
+        self.db = NucleiDataset(opt.nuclei_data_dir, data_csv, use_difficult=use_difficult)
 
     def __getitem__(self, idx):
         ori_img, bbox, label, difficult = self.db.get_example(idx)
-        img = preprocess(ori_img)
+        img = preprocess(ori_img, opt.min_size, opt.max_size)
         return img, ori_img.shape[1:], bbox, label, difficult
 
     def __len__(self):
